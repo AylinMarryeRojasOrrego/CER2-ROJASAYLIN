@@ -82,6 +82,22 @@ def agregarCarrito(request, pk):
 
     return redirect("carrito")
 
+def remover_del_carrito(request, pk):
+    if not request.user.is_authenticated:
+        redirect("")
+
+    product_id = pk
+    product = Producto.objects.get(ide=product_id)
+
+    cart, created = Carrito.objects.get_or_create(usuario=request.user, completado=False)
+    cosas_del_carrito, created =CarritoItem.objects.get_or_create(carrito=cart, producto=product)
+    cosas_del_carrito.cantidad -= 1
+    cosas_del_carrito.save()
+    if cosas_del_carrito.cantidad <= 0:
+        cosas_del_carrito.delete()
+
+    return redirect("carrito")
+
 
 def confirmar_pedido(request):
     if not request.user.is_authenticated:

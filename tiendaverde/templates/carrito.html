@@ -12,6 +12,7 @@
                     <th>Cantidad</th>
                     <th>Precio unitario</th>
                     <th>Precio total</th>
+                    <th>Quitar producto</th>
                 </tr>
 
                 {% for item in items %}
@@ -26,6 +27,7 @@
                         <td><p>{{item.cantidad}}</p></td>
                         <td><p>${{item.producto.precio}}</p></td>
                         <td><p>${{item.precio}}</p></td>
+                        <td><button value="{{producto.ide}}"><a href="{% url 'remover_del_carrito' item.producto.ide %}">Quitar del carrito</a></button></td>
                     </tr>
                 {% endfor %}
             </table>
