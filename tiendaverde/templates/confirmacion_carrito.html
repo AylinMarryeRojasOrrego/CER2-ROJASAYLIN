@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+<div class="container">
+
+Se confirmó tu pedido de {{carrito.cantidad_de_cosas}} productos por <h3>${{carrito.precio_total}}</h3>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends 'layout.html' %} {% block content %}
+
+<div class="shoppingCart">
+    <h2>Mi carrito</h2>
+
+    <div class="itemContainer">
+
+        {% if carrito and carrito.cantidad_de_cosas > 0 %}
+            <table>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio unitario</th>
+                    <th>Precio total</th>
+                </tr>
+
+                {% for item in items %}
+                    <tr>
+                        <td class="iteminfo">
+                            <div class="p_img">
+                            <img src="{{item.product.picture.url}}" alt="" />
+                            </div>
+                            <p>{{item.producto.nombre}}</p>
+                        </td>
+
+                        <td><p>{{item.cantidad}}</p></td>
+                        <td><p>${{item.producto.precio}}</p></td>
+                        <td><p>${{item.precio}}</p></td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <div class="pay-section">
+                <h3>Total final: ${{carrito.precio_total}}</h3>
+                {% if carrito.cantidad_de_cosas > 0 %}
+                <button><a href="{% url 'confirmar_pedido' %}">Confirmar pedido</a> </button>
+                {% endif %}
+            </div>
+        {% else %}
+        <p>No hay cosas en el carrito</p>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock content %}

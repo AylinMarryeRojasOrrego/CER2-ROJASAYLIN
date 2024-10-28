@@ -5,16 +5,20 @@
 {% endblock %}
 
 {% block content %}
-    <h1>User Login</h1>
-    {% if user.is_authenticated %}
-        <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-    {% else %}
-        <p>Welcome, new user. Please log in.</p>
-        <form class="form-with-validation" action="/login/" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <button class="form-submit">Submit</button>
-        </form>
-    {% endif %}
-    
+
+    <div class="col-md-12">
+        <div class="feature-box">
+        <h1>User Login</h1>
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+        {% else %}
+            <p>Welcome, new user. Please log in.</p>
+            <form class="form-with-validation" action="/login/" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button class="form-submit">Submit</button>
+            </form>
+        {% endif %}
+        </div>
+    </div>
 {% endblock %}
